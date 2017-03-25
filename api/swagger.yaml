@@ -1,0 +1,96 @@
+---
+swagger: "2.0"
+info:
+  description: "Flight center API\n"
+  version: "1.2.3"
+  title: "FlightHack"
+basePath: "/api"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /suggest/{id}:
+    get:
+      description: "Gets `suggest` string.\n"
+      operationId: "suggestIdGET"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Suggested Location"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response"
+          schema:
+            type: "string"
+            title: "Status"
+      x-swagger-router-controller: "Default"
+  /fact:
+    post:
+      operationId: "factPOST"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Post new fact"
+        required: true
+        schema:
+          $ref: "#/definitions/obj"
+      responses:
+        200:
+          description: "Responds with new fact"
+          schema:
+            type: "array"
+            title: "Fact"
+            items:
+              $ref: "#/definitions/obj"
+      x-swagger-router-controller: "Default"
+  /updateaddress:
+    post:
+      operationId: "updateaddressPOST"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Post new address"
+        required: true
+        schema:
+          $ref: "#/definitions/obj"
+      responses:
+        200:
+          description: "Responds with the new fact"
+          schema:
+            type: "array"
+            title: "Address"
+            items:
+              $ref: "#/definitions/obj"
+      x-swagger-router-controller: "Default"
+  /setsnooze:
+    post:
+      operationId: "setsnoozePOST"
+      parameters:
+      - in: "body"
+        name: "id"
+        description: "Post snooze time"
+        required: true
+        schema:
+          $ref: "#/definitions/obj"
+      responses:
+        200:
+          description: "Responds with snooze time"
+          schema:
+            type: "array"
+            title: "Snooze"
+            items:
+              $ref: "#/definitions/obj"
+      x-swagger-router-controller: "Default"
+definitions:
+  obj:
+    type: "object"
+    properties:
+      data:
+        type: "object"
+        properties: {}
